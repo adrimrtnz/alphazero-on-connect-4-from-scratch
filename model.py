@@ -23,8 +23,16 @@ def column_top_row(board, column):
             return i
     return -1
 
-# Step 3 - drop_piece (not yet solved)
-# TODO: implement
+# Step 3 - drop_piece
+def drop_piece(board, column, player):
+    # place `player` in the lowest empty row of `column` and return the new board
+    new_board = board.copy()
+    row = column_top_row(board=board, column=column)
+    # print(row)
+    if row == -1:
+        raise ValueError
+    new_board[row, column] = player
+    return new_board
 
 # Step 4 - column_full (not yet solved)
 # TODO: implement
