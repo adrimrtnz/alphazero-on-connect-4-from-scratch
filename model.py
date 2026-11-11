@@ -60,9 +60,10 @@ def four_in_a_row_horizontal(board):
 def four_in_a_row_vertical(board):
     # scan every column for four consecutive matching non-zero pieces vertically
     for row in board.T:
-        for player in { 1, 2 }:
-            if (row == player).sum() >= 4:
-                return player
+        for i in range(0, board.shape[1] - 3):
+            for player in {1, 2}:
+                if (row[i:i+4] == player).sum() == 4:
+                    return player
     return 0
 
 # Step 8 - four_in_a_row_diagonal_down_right
