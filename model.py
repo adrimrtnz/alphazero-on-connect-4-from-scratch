@@ -142,8 +142,10 @@ def encode_board(board, current_player):
     o_player_b = (board == other_player(current_player)).astype(np.float32)
     return np.stack([c_player_b, o_player_b], axis=0)
 
-# Step 16 - board_to_torch_tensor (not yet solved)
-# TODO: implement
+# Step 16 - board_to_torch_tensor
+def board_to_torch_tensor(board, current_player):
+    # encode the board and return it as a float32 torch tensor of shape (1, 2, 6, 7).
+    return torch.from_numpy(encode_board(board, current_player)).unsqueeze(dim=0)
 
 # Step 17 - init_conv_backbone (not yet solved)
 # TODO: implement
