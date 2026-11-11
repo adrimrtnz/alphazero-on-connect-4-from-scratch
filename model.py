@@ -58,14 +58,22 @@ def four_in_a_row_horizontal(board):
 # Step 7 - four_in_a_row_vertical
 def four_in_a_row_vertical(board):
     # scan every column for four consecutive matching non-zero pieces vertically
-    for row in board.T:
+    for row in board[-1]:
         for player in { 1, 2 }:
             if (row == player).sum() >= 4:
                 return player
     return 0
 
-# Step 8 - four_in_a_row_diagonal_down_right (not yet solved)
-# TODO: implement
+# Step 8 - four_in_a_row_diagonal_down_right
+def four_in_a_row_diagonal_down_right(board):
+    # scan every down-right diagonal of the 6x7 board for four matching non-zero pieces
+    n_diags = board.shape[0] // 2
+    for k in range(-n_diags, n_diags + 1):
+        diag = np.diag(board, k=k)
+        for player in { 1, 2 }:
+            if (diag == player).sum() >= 4:
+                return player
+    return 0
 
 # Step 9 - four_in_a_row_diagonal_up_right (not yet solved)
 # TODO: implement
