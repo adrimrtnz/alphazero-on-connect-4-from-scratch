@@ -72,9 +72,10 @@ def four_in_a_row_diagonal_down_right(board):
     n_diags = board.shape[0] // 2
     for k in range(-n_diags, n_diags + 1):
         diag = np.diag(board, k=k)
-        for player in { 1, 2 }:
-            if (diag == player).sum() >= 4:
-                return player
+        for i in range(0, diag.shape[0] - 3):
+            for player in { 1, 2 }:
+                if (diag[i:i+4] == player).sum() >= 4:
+                    return player
     return 0
 
 # Step 9 - four_in_a_row_diagonal_up_right
