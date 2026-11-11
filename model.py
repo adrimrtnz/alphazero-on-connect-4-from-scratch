@@ -119,10 +119,6 @@ def board_is_full(board):
 def is_terminal(board):
     # return (done, winner) using check_winner and board_is_full.
     winner = check_winner(board)
-    print(four_in_a_row_horizontal(board))
-    print(four_in_a_row_vertical(board))
-    print(four_in_a_row_diagonal_down_right(board))
-    print(four_in_a_row_diagonal_up_right(board))
     done = (winner != 0) or board_is_full(board)
     return (done, winner)
 
