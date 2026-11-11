@@ -85,9 +85,10 @@ def four_in_a_row_diagonal_up_right(board):
     n_diags = antiboard.shape[0] // 2
     for k in range(-n_diags, n_diags + 1):
         diag = np.diag(antiboard, k=k)
-        for player in { 1, 2 }:
-            if (diag == player).sum() >= 4:
-                return player
+        for i in range(0, diag.shape[0] - 3):
+            for player in { 1, 2 }:
+                if (diag[i:i+4] == player).sum() >= 4:
+                    return player
     return 0
 
 # Step 10 - check_winner
