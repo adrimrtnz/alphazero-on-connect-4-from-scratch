@@ -50,9 +50,10 @@ def valid_moves(board):
 # Step 6 - four_in_a_row_horizontal
 def four_in_a_row_horizontal(board):
     for row in board:
-        for player in { 1, 2 }:
-            if (row == player).sum() == 4:
-                return player
+        for i in range(0, board.shape[1] - 3):
+            for player in {1, 2}:
+                if (row[i:i+4] == player).sum() == 4:
+                    return player
     return 0
 
 # Step 7 - four_in_a_row_vertical
@@ -111,8 +112,16 @@ def board_is_full(board):
     # return True when no column has an empty slot left
     return np.all((board[0] != 0)) or len(valid_moves(board)) == 0
 
-# Step 12 - is_terminal (not yet solved)
-# TODO: implement
+# Step 12 - is_terminal
+def is_terminal(board):
+    # return (done, winner) using check_winner and board_is_full.
+    winner = check_winner(board)
+    print(four_in_a_row_horizontal(board))
+    print(four_in_a_row_vertical(board))
+    print(four_in_a_row_diagonal_down_right(board))
+    print(four_in_a_row_diagonal_up_right(board))
+    done = (winner != 0) or board_is_full(board)
+    return (done, winner)
 
 # Step 13 - other_player (not yet solved)
 # TODO: implement
