@@ -106,8 +106,10 @@ def check_winner(board):
             return winner
     return 0
 
-# Step 11 - board_is_full (not yet solved)
-# TODO: implement
+# Step 11 - board_is_full
+def board_is_full(board):
+    # return True when no column has an empty slot left
+    return np.all((board[0] != 0)) or len(valid_moves(board)) == 0
 
 # Step 12 - is_terminal (not yet solved)
 # TODO: implement
