@@ -47,8 +47,13 @@ def valid_moves(board):
         i for i in range(board.shape[-1]) if not column_full(board=board, column=i)
     ]
 
-# Step 6 - four_in_a_row_horizontal (not yet solved)
-# TODO: implement
+# Step 6 - four_in_a_row_horizontal
+def four_in_a_row_horizontal(board):
+    for row in board:
+        for player in { 1, 2 }:
+            if (row == player).sum() == 4:
+                return player
+    return 0
 
 # Step 7 - four_in_a_row_vertical (not yet solved)
 # TODO: implement
