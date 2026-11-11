@@ -58,7 +58,7 @@ def four_in_a_row_horizontal(board):
 # Step 7 - four_in_a_row_vertical
 def four_in_a_row_vertical(board):
     # scan every column for four consecutive matching non-zero pieces vertically
-    for row in board[-1]:
+    for row in board.T:
         for player in { 1, 2 }:
             if (row == player).sum() >= 4:
                 return player
@@ -87,8 +87,24 @@ def four_in_a_row_diagonal_up_right(board):
                 return player
     return 0
 
-# Step 10 - check_winner (not yet solved)
-# TODO: implement
+# Step 10 - check_winner
+import numpy as np
+
+def check_winner(board):
+    """Return 1 or 2 if that player has four in a row, else 0."""
+    # combine the four direction scans and return the first non-zero result
+
+    checks = [
+        four_in_a_row_horizontal,
+        four_in_a_row_vertical,
+        four_in_a_row_diagonal_down_right,
+        four_in_a_row_diagonal_up_right,
+    ]
+    
+    for check in checks:
+        if (winner := check(board)):
+            return winner
+    return 0
 
 # Step 11 - board_is_full (not yet solved)
 # TODO: implement
