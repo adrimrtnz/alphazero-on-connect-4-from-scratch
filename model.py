@@ -75,8 +75,17 @@ def four_in_a_row_diagonal_down_right(board):
                 return player
     return 0
 
-# Step 9 - four_in_a_row_diagonal_up_right (not yet solved)
-# TODO: implement
+# Step 9 - four_in_a_row_diagonal_up_right
+def four_in_a_row_diagonal_up_right(board):
+    # scan every up-right diagonal for four consecutive matching non-zero pieces
+    antiboard = np.fliplr(board)
+    n_diags = antiboard.shape[0] // 2
+    for k in range(-n_diags, n_diags + 1):
+        diag = np.diag(antiboard, k=k)
+        for player in { 1, 2 }:
+            if (diag == player).sum() >= 4:
+                return player
+    return 0
 
 # Step 10 - check_winner (not yet solved)
 # TODO: implement
