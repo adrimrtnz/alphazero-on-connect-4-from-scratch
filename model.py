@@ -134,8 +134,13 @@ def step_env(board, column, player):
     next_player = other_player(player)
     return (new_board, done, winner, next_player)
 
-# Step 15 - encode_board (not yet solved)
-# TODO: implement
+# Step 15 - encode_board
+def encode_board(board, current_player):
+    """Encode a 6x7 board as a (2, 6, 7) float32 tensor from current_player's view."""
+    # build two binary planes (current player, opponent) and stack them
+    c_player_b = (board == current_player).astype(np.float32)
+    o_player_b = (board == other_player(current_player)).astype(np.float32)
+    return np.stack([c_player_b, o_player_b], axis=0)
 
 # Step 16 - board_to_torch_tensor (not yet solved)
 # TODO: implement
