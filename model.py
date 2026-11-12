@@ -236,8 +236,8 @@ def masked_policy_logits(logits, mask):
     mask:   bool array/tensor of shape (7,), True = legal
     returns: torch.Tensor of same shape as logits
     """
-    x = logits * mask
-    return torch.where(x != 0, x, float('-inf'))
+    mask = torch.as_tensor(mask, dtype=torch.bool, device=logits.device)
+    return torch.where(mask, logits, float('-inf'))
 
 # Step 24 - masked_log_softmax
 import torch
@@ -246,7 +246,6 @@ def masked_log_softmax(logits, mask):
     """Log-softmax of logits with illegal columns (mask=False) forced to -inf."""
     # mask out illegal columns, then apply log-softmax over the last dim.
     z = masked_policy_logits(logits, mask)
-    print(z)
     return torch.log_softmax(z, dim=-1)
 
 # Step 25 - sample_action_from_policy (not yet solved)
