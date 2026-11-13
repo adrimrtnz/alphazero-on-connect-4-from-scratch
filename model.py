@@ -248,8 +248,16 @@ def masked_log_softmax(logits, mask):
     z = masked_policy_logits(logits, mask)
     return torch.log_softmax(z, dim=-1)
 
-# Step 25 - sample_action_from_policy (not yet solved)
-# TODO: implement
+# Step 25 - sample_action_from_policy
+import torch
+
+def sample_action_from_policy(logits, mask, temperature=1.0):
+    """Sample a legal column from a tempered masked categorical policy."""
+    scaled_logits = logits / temperature
+    p_logits = masked_policy_logits(scaled_logits, mask)
+    probs  = torch.softmax(p_logits, dim=-1)
+    index  = torch.multinomial(probs, num_samples=1).int().item()
+    return index
 
 # Step 26 - greedy_action_from_policy (not yet solved)
 # TODO: implement
